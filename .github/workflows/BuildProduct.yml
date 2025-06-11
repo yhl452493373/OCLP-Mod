@@ -20,19 +20,8 @@ jobs:
       commitdate: ${{ github.event.head_commit.timestamp }}${{ github.event.release.published_at }}
 
     steps:
-      - uses: actions/checkout@v4
-
-      # - name: Import Application Signing Certificate
-      #   uses: dhinakg/import-codesign-certs@master
-      #   with:
-      #     p12-file-base64: ${{ secrets.ORG_MAC_DEVELOPER_ID_APPLICATION_CERT_P12_BASE64 }}
-      #     p12-password: ${{ secrets.ORG_MAC_DEVELOPER_ID_APPLICATION_CERT_P12_PASSWORD }}
-
-      # - name: Import Installer Signing Certificate
-      #   uses: dhinakg/import-codesign-certs@master
-      #   with:
-      #     p12-file-base64: ${{ secrets.ORG_MAC_DEVELOPER_ID_INSTALLER_CERT_P12_BASE64 }}
-      #     p12-password: ${{ secrets.ORG_MAC_DEVELOPER_ID_INSTALLER_CERT_P12_PASSWORD }}
+      - name: Checkout Project
+        uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: |
@@ -83,30 +72,3 @@ jobs:
         with:
           name: OCLP-Mod-Uninstaller.pkg
           path: ./dist/OCLP-Mod-Uninstaller.pkg
-
-      - name: Upload AutoPkg Package to Release
-        if: github.event_name == 'release'
-        uses: svenstaro/upload-release-action@e74ff71f7d8a4c4745b560a485cc5fdb9b5b999d
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./dist/AutoPkg-Assets.pkg
-          tag: ${{ github.ref }}
-          file_glob: true
-
-      - name: Upload Installation Package to Release
-        if: github.event_name == 'release'
-        uses: svenstaro/upload-release-action@e74ff71f7d8a4c4745b560a485cc5fdb9b5b999d
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./dist/OCLP-Mod.pkg
-          tag: ${{ github.ref }}
-          file_glob: true
-
-      - name: Upload Uninstaller Package to Release
-        if: github.event_name == 'release'
-        uses: svenstaro/upload-release-action@e74ff71f7d8a4c4745b560a485cc5fdb9b5b999d
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./dist/OCLP-Mod-Uninstaller.pkg
-          tag: ${{ github.ref }}
-          file_glob: true
