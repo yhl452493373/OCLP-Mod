@@ -84,7 +84,7 @@ class AMDLegacyGCN(BaseHardware):
             ]
         ) is False:
             if self._xnu_major >= os_data.sequoia:
-                bronze_bundle_source = "12.5-24"
+                bronze_bundle_source = "12.5-25"
 
         return {
             "AMD Legacy GCN": {

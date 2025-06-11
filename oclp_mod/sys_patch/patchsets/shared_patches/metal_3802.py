@@ -65,7 +65,7 @@ class LegacyMetal3802(BaseSharedPatchSet):
                 PatchType.MERGE_SYSTEM_VOLUME: {
                     "/System/Library/Frameworks": {
                         "Metal.framework": f"13.2.1-{self._xnu_major}",
-                        **({  "CoreImage.framework": "14.0 Beta 3" if self._xnu_major < os_data.sequoia.value else "14.0 Beta 3-24"} if self._xnu_major >= os_data.sonoma.value else {}),
+                        **({  "CoreImage.framework": "14.0 Beta 3" if self._xnu_major < os_data.sequoia.value else "14.0 Beta 3-25"} if self._xnu_major >= os_data.sonoma.value else {}),
                     },
                     "/System/Library/PrivateFrameworks": {
                         **({  "MTLCompiler.framework": "13.2.1" } if self._xnu_major == os_data.ventura.value else {}),

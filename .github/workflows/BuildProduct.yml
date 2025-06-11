@@ -12,7 +12,6 @@ jobs:
   build:
     name: Build wxPython
     runs-on: macos-13
-    if: github.repository_owner == 'laobamac'
 
     env:
       # GitHub Information
